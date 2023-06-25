@@ -13,6 +13,6 @@
 Каждые 24 часа бот сохраняет информацию в папке reports/raw (по умолчанию) в виде интервалов, когда сервис не работал, и дополнительной информации. Для работы с данными в таком формате и создания отчетов предусмотрен файл report.py.
 
 # Отчетность
-Бот в телеграме - https://t.me/Onlinechc_bot
-Чат, в котором происходил запуск - https://t.me/+Ydx_ZBix4404OWNi
-Результат запуска программы **Презентация тут** - https://drive.google.com/drive/folders/1bfHoRQIMJqPXKN7AcYkdpfJGNbuwna4S?usp=sharing
+Бот в телеграме - https://t.me/Onlinechc_bot  
+Чат, в котором происходил запуск - https://t.me/+Ydx_ZBix4404OWNi  
+Результат запуска программы **Презентация тут** - https://drive.google.com/drive/folders/1bfHoRQIMJqPXKN7AcYkdpfJGNbuwna4S?usp=sharing  
