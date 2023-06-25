@@ -5,7 +5,7 @@
 Для работы программы необходимо выполнить команды  
 `pip install requests`  
 `pip install pyTelegramBotAPI`  
-Для создания отчетов
+Для создания отчетов  
 `pip install pandas`
 
 # Начало работы
