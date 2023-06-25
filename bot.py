@@ -6,9 +6,7 @@ import requests
 import threading
 import datetime
 
-from urllib.parse import urlparse
-
-ACCESS_TOKEN = "5704820944:AAFTyLi4ad3KR0rOP_so8PNEA8u3w38-Gu0"
+ACCESS_TOKEN = ""
 BOT_STATE_PATH = "bot_state.json"
 REPORT_PREFIX = "reports/raw/"
 DATE_FORMAT = "%Y-%m-%d %H:%M:%S"
@@ -47,7 +45,7 @@ def handle_channel_event(message):
 
     status = message.new_chat_member.status
     if status == "administrator":
-        bot.send_message(user_id, "Вы успешно добавили бота в чат, напишите /help для конфигурации")
+        bot.send_message(user_id, "Вы успешно добавили бота в чат, напишите /add для добавления сервисов")
         if user_id not in bot_users.keys():
             bot_users[user_id] = [chat_id]
         else:
@@ -65,7 +63,7 @@ def show_status(message):
     chat_id = str(message.chat.id)
 
     if user_id not in bot_users.keys() or len(bot_users[user_id]) == 0:
-        bot.send_message(chat_id, "Вас нема, ща добавитесь и пишите давайте")
+        bot.send_message(chat_id, "Вы не добавляли бота в чаты")
     else:
         bot.send_message(chat_id, "С вами ассоциированы следующие чаты")
         bot.send_message(chat_id, "\n".join([f"ID: {n+1}, Название: {bot_channels[v]['title']}" for n, v in enumerate(bot_users[user_id])]))
@@ -131,7 +129,7 @@ if __name__ == "__main__":
                 bot_services[service]["available"] = False
             else:
                 if not bot_services[service]["available"]:
-                    current_report[service] += [bot_services[service]["last_online"], current_datetime]
+                    current_report[service] += [[bot_services[service]["last_online"], current_datetime]]
                     for channel in bot_services[service]["channels"]:
                         if service in bot_channels[channel]["services"].keys():
                             name, stype = bot_channels[channel]["services"][service]
@@ -141,7 +139,7 @@ if __name__ == "__main__":
                 bot_services[service]["available"] = True
                 bot_services[service]["last_online"] = current_datetime
 
-        if (datetime.datetime.now() - last_report).seconds >= 60:
+        if datetime.datetime.now().day != last_report.day:
             path = ""
             for i in REPORT_PREFIX.split("/"):
                 path += i if path == "" else "/" + i
